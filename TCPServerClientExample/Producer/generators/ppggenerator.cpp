@@ -2,7 +2,8 @@
 #include <QRandomGenerator>
 #include <QtMath>
 PPGGenerator::PPGGenerator()
-    : IDataGenerator("PPG", ""), m_lastValue(0.5), m_phase(0) {}
+    : IDataGenerator(MessageType::PPG, "PPG", ""), m_lastValue(0.5),
+      m_phase(0) {}
 
 const qreal &PPGGenerator::generateData() {
   m_phase += 0.1;

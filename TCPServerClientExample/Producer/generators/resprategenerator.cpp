@@ -1,7 +1,8 @@
 #include "resprategenerator.h"
 #include <QRandomGenerator>
 RespRateGenerator::RespRateGenerator()
-    : IDataGenerator("Respiratory Rate", "breaths/min"),
+    : IDataGenerator(MessageType::RespiratoryRate, "Respiratory Rate",
+                     "breaths/min"),
       m_currentValue(16.0), // typical resting rate
       m_minRate(12.0), m_maxRate(20.0) {}
 

@@ -1,8 +1,12 @@
 #include "idatagenerator.h"
 
-IDataGenerator::IDataGenerator(const QString &paramNameVal,
+IDataGenerator::IDataGenerator(const MessageType &paramTypeVal,
+                               const QString &paramNameVal,
                                const QString &paramUnitsVal)
-    : paramName{paramNameVal}, paramUnits{paramUnitsVal} {}
+    : paramName{paramNameVal}, paramUnits{paramUnitsVal},
+      paramType{paramTypeVal} {}
+
+const MessageType &IDataGenerator::getParameterType() { return paramType; }
 
 const QString &IDataGenerator::getParameterName() { return paramName; }
 

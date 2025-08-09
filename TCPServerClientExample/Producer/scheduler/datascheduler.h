@@ -2,6 +2,7 @@
 #define DATASCHEDULER_H
 
 #include "../generators/idatagenerator.h"
+#include <QJsonObject>
 #include <QObject>
 #include <QTimer>
 #include <memory>
@@ -31,7 +32,7 @@ private:
   QTimer tickTimer;
   static constexpr int baseTickMs = 10; // scheduler resolution
 signals:
-  void dataGenerated();
+  void dataGenerated(const QJsonObject &obj);
 };
 
 #endif // DATASCHEDULER_H

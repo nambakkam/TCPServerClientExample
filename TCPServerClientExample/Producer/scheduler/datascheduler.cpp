@@ -18,7 +18,14 @@ void DataScheduler::onTick() {
       const auto &value = task.generator->generateData();
       //      qDebug() << task.generator->getParameterName() << ":" << value
       //               << task.generator->getParameterUnits();
-      emit dataGenerated();
+      QJsonObject message;
+      message[CommonKeys::PARAMETER_TYPE] =
+          parameterTypeToString(task.generator->getParameterType());
+      message[CommonKeys::PARAM_NAME] = task.generator->getParameterName();
+      message[CommonKeys::VALUE] = QJsonValue::fromVariant(value);
+      message[CommonKeys::UNITS] = task.generator->getParameterUnits();
+      message[CommonKeys::VERSION] = CommonMessages::CURRENT_VERSION;
+      emit dataGenerated(message);
       task.counterMs = task.intervalMs; // reset
     }
   }

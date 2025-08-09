@@ -1,7 +1,7 @@
 #include "spo2generator.h"
 
 Spo2Generator::Spo2Generator()
-    : IDataGenerator("SpO2", "%"),
+    : IDataGenerator(MessageType::Spo2, "SpO2", "%"),
       m_currentValue(98.0), // typical resting saturation
       m_minValue(95.0), m_maxValue(100.0) {}
 

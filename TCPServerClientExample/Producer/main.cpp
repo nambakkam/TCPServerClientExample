@@ -1,6 +1,5 @@
 #include "commonMessages.h"
 #include "communication/tcpservercommunicator.h"
-#include "communication/udpservercommunicator.h"
 #include "generators/datageneratorfactory.h"
 #include "scheduler/datascheduler.h"
 #include <QCoreApplication>
@@ -25,10 +24,13 @@ int main(int argc, char *argv[]) {
 
   TcpServerCommunicator tcpServer;
   tcpServer.startServer(12345);
-  QObject::connect(&scheduler, &DataScheduler::dataGenerated, [&tcpServer]() {
-    bool status = tcpServer.sendData("Hello TCP clients!");
-    qDebug() << "Sending data over TCP" << status;
-  });
+  QObject::connect(&scheduler, &DataScheduler::dataGenerated, &tcpServer,
+                   [&tcpServer](const QJsonObject &value) {
+                     QByteArray message = frameMessage(value);
+                     //                     qDebug() << "Message Published" <<
+                     //                     message;
+                     tcpServer.sendData(message);
+                   });
 
   return a.exec();
 }

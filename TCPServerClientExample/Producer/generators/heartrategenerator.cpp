@@ -1,7 +1,7 @@
 #include "heartrategenerator.h"
 #include <QRandomGenerator>
 HeartRateGenerator::HeartRateGenerator()
-    : IDataGenerator("Heart Rate", "BPM"),
+    : IDataGenerator(MessageType::HeartRate, "Heart Rate", "BPM"),
       m_currentValue(75.0), // typical resting value
       m_minRate(60.0), m_maxRate(100.0) {}
 

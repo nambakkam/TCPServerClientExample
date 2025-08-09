@@ -1,8 +1,8 @@
 #include "nibpdiastolicgenerator.h"
 
 NIBPDiastolicGenerator::NIBPDiastolicGenerator()
-    : IDataGenerator("NIBP Diastolic", "mmHg"), m_currentValue(80.0),
-      m_minValue(60.0), m_maxValue(90.0) {}
+    : IDataGenerator(MessageType::NIBPDiastole, "NIBP Diastolic", "mmHg"),
+      m_currentValue(80.0), m_minValue(60.0), m_maxValue(90.0) {}
 
 const qreal &NIBPDiastolicGenerator::generateData() {
   // Small random change ±1 mmHg

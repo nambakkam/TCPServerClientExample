@@ -1,22 +1,24 @@
 #include <QGuiApplication>
+#include <QHostAddress>
 #include <QQmlApplicationEngine>
-
-
-int main(int argc, char *argv[])
-{
+#include <tcpclient.h>
+int main(int argc, char *argv[]) {
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+  QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 #endif
-    QGuiApplication app(argc, argv);
-
-    QQmlApplicationEngine engine;
-    const QUrl url(QStringLiteral("qrc:/main.qml"));
-    QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
-                     &app, [url](QObject *obj, const QUrl &objUrl) {
+  QGuiApplication app(argc, argv);
+  TcpClient client;
+  client.connectToHost(QHostAddress::LocalHost, 12345);
+  QQmlApplicationEngine engine;
+  const QUrl url(QStringLiteral("qrc:/main.qml"));
+  QObject::connect(
+      &engine, &QQmlApplicationEngine::objectCreated, &app,
+      [url](QObject *obj, const QUrl &objUrl) {
         if (!obj && url == objUrl)
-            QCoreApplication::exit(-1);
-    }, Qt::QueuedConnection);
-    engine.load(url);
+          QCoreApplication::exit(-1);
+      },
+      Qt::QueuedConnection);
+  engine.load(url);
 
-    return app.exec();
+  return app.exec();
 }

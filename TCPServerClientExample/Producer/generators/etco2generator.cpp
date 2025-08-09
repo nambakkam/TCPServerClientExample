@@ -2,7 +2,7 @@
 #include <QtMath>
 
 EtCO2Generator::EtCO2Generator()
-    : IDataGenerator("EtCO2", "mmHg"), m_phase(0.0),
+    : IDataGenerator(MessageType::EtCo2, "EtCO2", "mmHg"), m_phase(0.0),
       m_frequency(0.25),  // ~15 breaths/min
       m_samplingRate(50), // smoother waveform
       m_currentValue(0.0) {}
