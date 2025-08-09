@@ -30,6 +30,8 @@ private:
   std::vector<Task> tasks; // std::vector instead of QVector
   QTimer tickTimer;
   static constexpr int baseTickMs = 10; // scheduler resolution
+signals:
+  void dataGenerated();
 };
 
 #endif // DATASCHEDULER_H

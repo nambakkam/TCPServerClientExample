@@ -16,9 +16,9 @@ void DataScheduler::onTick() {
     task.counterMs -= baseTickMs;
     if (task.counterMs <= 0) {
       const auto &value = task.generator->generateData();
-      qDebug() << task.generator->getParameterName() << ":" << value
-               << task.generator->getParameterUnits();
-
+      //      qDebug() << task.generator->getParameterName() << ":" << value
+      //               << task.generator->getParameterUnits();
+      emit dataGenerated();
       task.counterMs = task.intervalMs; // reset
     }
   }

@@ -8,6 +8,8 @@ CONFIG -= app_bundle
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+        communication/tcpservercommunicator.cpp \
+        communication/udpservercommunicator.cpp \
         generators/bodytemperaturegenerator.cpp \
         generators/datageneratorfactory.cpp \
         generators/ecggenerator.cpp \
@@ -31,6 +33,9 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 include("$$PWD/../Common/common.pri")
 
 HEADERS += \
+    communication/icommunicatorserver.h \
+    communication/tcpservercommunicator.h \
+    communication/udpservercommunicator.h \
     generators/bodytemperaturegenerator.h \
     generators/datageneratorfactory.h \
     generators/ecggenerator.h \
