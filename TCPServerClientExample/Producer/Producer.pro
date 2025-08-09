@@ -1,5 +1,5 @@
 QT -= gui
-
+QT += core network
 CONFIG += c++17 console
 CONFIG -= app_bundle
 
@@ -9,6 +9,7 @@ CONFIG -= app_bundle
 
 SOURCES += \
         generators/bodytemperaturegenerator.cpp \
+        generators/datageneratorfactory.cpp \
         generators/ecggenerator.cpp \
         generators/etco2generator.cpp \
         generators/heartrategenerator.cpp \
@@ -19,7 +20,8 @@ SOURCES += \
         generators/resprategenerator.cpp \
         generators/respwaveformgenerator.cpp \
         generators/spo2generator.cpp \
-        main.cpp
+        main.cpp \
+        scheduler/datascheduler.cpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -30,6 +32,7 @@ include("$$PWD/../Common/common.pri")
 
 HEADERS += \
     generators/bodytemperaturegenerator.h \
+    generators/datageneratorfactory.h \
     generators/ecggenerator.h \
     generators/etco2generator.h \
     generators/heartrategenerator.h \
@@ -39,4 +42,5 @@ HEADERS += \
     generators/ppggenerator.h \
     generators/resprategenerator.h \
     generators/respwaveformgenerator.h \
-    generators/spo2generator.h
+    generators/spo2generator.h \
+    scheduler/datascheduler.h
