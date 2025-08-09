@@ -1,6 +1,7 @@
 INCLUDEPATH += $$PWD
 
 HEADERS += \
+    $$PWD/commonMessages.h \
     $$PWD/encryption.h
 
 SOURCES += \
