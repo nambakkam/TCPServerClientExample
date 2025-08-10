@@ -7,7 +7,8 @@ ApplicationWindow {
     width: 1024
     height: 600
     title: "Live Sensor DashBoard"
-    GraphTabs{
-        anchors.fill:parent
+
+    MainScreen{
+        anchors.fill: parent
     }
 }

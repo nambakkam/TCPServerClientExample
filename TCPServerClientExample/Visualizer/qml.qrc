@@ -2,5 +2,12 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>GraphTabs.qml</file>
+        <file>DialsRow.qml</file>
+        <file>MainScreen.qml</file>
+        <file>NIBPDisplay.qml</file>
+        <file>HorizontalGauge.qml</file>
+        <file>TemperatureGauge.qml</file>
+        <file>EtCo2Display.qml</file>
+        <file>ConnectToServer.qml</file>
     </qresource>
 </RCC>

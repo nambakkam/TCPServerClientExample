@@ -1,3 +1,4 @@
+#include "dialindicator.h"
 #include <QGuiApplication>
 #include <QHostAddress>
 #include <QQmlApplicationEngine>
@@ -9,6 +10,7 @@ int main(int argc, char *argv[]) {
   QGuiApplication app(argc, argv);
   TcpClient client;
   client.connectToHost(QHostAddress::LocalHost, 12345);
+  qmlRegisterType<DialIndicator>("CustomControls", 1, 0, "DialIndicator");
   QQmlApplicationEngine engine;
   const QUrl url(QStringLiteral("qrc:/main.qml"));
   QObject::connect(
