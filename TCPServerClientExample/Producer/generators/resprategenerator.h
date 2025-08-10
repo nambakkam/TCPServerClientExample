@@ -10,8 +10,6 @@ public:
 
 private:
   qreal m_currentValue; // current RR in breaths/min
-  qreal m_minRate;      // min possible rate
-  qreal m_maxRate;      // max possible rate
 };
 
 #endif // RESPRATEGENERATOR_H

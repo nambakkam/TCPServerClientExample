@@ -32,6 +32,8 @@ inline constexpr char PARAMETER_TYPE[] = "parameterType";
 inline constexpr char PARAM_NAME[] = "paramName";
 inline constexpr char VALUE[] = "value";
 inline constexpr char UNITS[] = "units";
+inline constexpr char MINVAL[] = "minValue";
+inline constexpr char MAXVAL[] = "maxValue";
 inline constexpr char VERSION[] = "version";
 } // namespace CommonKeys
 // Enum to string conversion
@@ -94,6 +96,7 @@ inline bool validateMessage(const QJsonObject &obj) {
   return obj.contains(CommonKeys::PARAMETER_TYPE) &&
          obj.contains(CommonKeys::PARAM_NAME) &&
          obj.contains(CommonKeys::VALUE) && obj.contains(CommonKeys::UNITS) &&
+         obj.contains(CommonKeys::MINVAL) && obj.contains(CommonKeys::MAXVAL) &&
          obj.contains(CommonKeys::VERSION) &&
          obj[CommonKeys::VERSION].toInt() == CURRENT_VERSION;
 }

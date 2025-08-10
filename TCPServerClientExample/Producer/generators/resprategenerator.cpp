@@ -2,9 +2,8 @@
 #include <QRandomGenerator>
 RespRateGenerator::RespRateGenerator()
     : IDataGenerator(MessageType::RespiratoryRate, "Respiratory Rate",
-                     "breaths/min"),
-      m_currentValue(16.0), // typical resting rate
-      m_minRate(12.0), m_maxRate(20.0) {}
+                     "breaths/min", 12, 20),
+      m_currentValue(16.0) {}
 
 const qreal &RespRateGenerator::generateData() {
   // Add small variation to simulate natural breathing rate changes
@@ -13,10 +12,10 @@ const qreal &RespRateGenerator::generateData() {
   m_currentValue += noise;
 
   // Clamp to normal range
-  if (m_currentValue < m_minRate)
-    m_currentValue = m_minRate;
-  if (m_currentValue > m_maxRate)
-    m_currentValue = m_maxRate;
+  if (m_currentValue < minValue)
+    m_currentValue = minValue;
+  if (m_currentValue > maxValue)
+    m_currentValue = maxValue;
 
   return m_currentValue;
 }

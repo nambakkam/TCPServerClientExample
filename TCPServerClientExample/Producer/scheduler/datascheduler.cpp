@@ -24,6 +24,8 @@ void DataScheduler::onTick() {
       message[CommonKeys::PARAM_NAME] = task.generator->getParameterName();
       message[CommonKeys::VALUE] = QJsonValue::fromVariant(value);
       message[CommonKeys::UNITS] = task.generator->getParameterUnits();
+      message[CommonKeys::MINVAL] = task.generator->getParameterMinValue();
+      message[CommonKeys::MAXVAL] = task.generator->getParameterMaxValue();
       message[CommonKeys::VERSION] = CommonMessages::CURRENT_VERSION;
       emit dataGenerated(message);
       task.counterMs = task.intervalMs; // reset

@@ -1,8 +1,8 @@
 #include "bodytemperaturegenerator.h"
 
 BodyTemperatureGenerator::BodyTemperatureGenerator()
-    : IDataGenerator(MessageType::BodyTemp, "Body Temperature", "°C"),
-      m_currentValue(37.0), m_minValue(36.5), m_maxValue(37.5) {}
+    : IDataGenerator(MessageType::BodyTemp, "Body Temperature", "°C", 35, 42),
+      m_currentValue(37.0) {}
 
 const qreal &BodyTemperatureGenerator::generateData() {
   // Tiny fluctuation ±0.05 °C
@@ -10,10 +10,10 @@ const qreal &BodyTemperatureGenerator::generateData() {
   m_currentValue += noise;
 
   // Clamp to normal range
-  if (m_currentValue < m_minValue)
-    m_currentValue = m_minValue;
-  if (m_currentValue > m_maxValue)
-    m_currentValue = m_maxValue;
+  if (m_currentValue < minValue)
+    m_currentValue = minValue;
+  if (m_currentValue > maxValue)
+    m_currentValue = maxValue;
 
   return m_currentValue;
 }

@@ -10,8 +10,6 @@ public:
 
 private:
   qreal m_currentValue;
-  qreal m_minRate;
-  qreal m_maxRate;
 };
 
 #endif // HEARTRATEGENERATOR_H

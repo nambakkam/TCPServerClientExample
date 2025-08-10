@@ -8,6 +8,7 @@ CONFIG += c++17
 SOURCES += \
         dialindicator.cpp \
         main.cpp \
+        parametermodel.cpp \
         tcpclient.cpp
 
 RESOURCES += qml.qrc
@@ -27,4 +28,5 @@ include("$$PWD/../Common/common.pri")
 
 HEADERS += \
     dialindicator.h \
+    parametermodel.h \
     tcpclient.h

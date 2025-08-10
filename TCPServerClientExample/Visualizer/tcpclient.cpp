@@ -52,11 +52,6 @@ void TcpClient::onReadyRead() {
     QJsonValue val = jsonObj[CommonMessages::CommonKeys::VALUE];
     QString units = jsonObj[CommonMessages::CommonKeys::UNITS].toString();
 
-    qDebug() << "Received data:"
-             << "\n  ParameterType:"
-             << CommonMessages::parameterTypeToString(paramType)
-             << "\n  ParamName    :" << paramName << "\n  Value        :" << val
-             << "\n  Units        :" << units
-             << "\n------------------------------";
+    emit dataReceived(jsonObj);
   }
 }

@@ -11,12 +11,14 @@ Rectangle {
     border.color: "#2a2f3b"
     border.width: 1
 
+    property string paramName: "NIBP"
     property real sysValue: 118.9
     property real diaValue: 80.8
     property real sysMin: 40
     property real sysMax: 180
     property real diaMin: 40
     property real diaMax: 120
+    property string units: "mmHg"
 
     ColumnLayout {
         anchors.fill: parent
@@ -24,7 +26,7 @@ Rectangle {
         spacing: 8
 
         Label {
-            text: "NIBP"
+            text: paramName
             color: "#aaaaaa"
             font.pixelSize: 12
         }
@@ -74,7 +76,7 @@ Rectangle {
         }
 
         Label {
-            text: Number(sysValue).toFixed(1) + "/" + Number(diaValue).toFixed(1) + " mmHg"
+            text: Number(sysValue).toFixed(1) + "/" + Number(diaValue).toFixed(1) + " " + units
             color: "#ffffff"
             font.pixelSize: 14
             font.bold: true

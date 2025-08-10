@@ -12,8 +12,6 @@ public:
 
 private:
   qreal m_currentValue;
-  qreal m_minValue;
-  qreal m_maxValue;
 };
 
 #endif // NIBPDIASTOLICGENERATOR_H

@@ -2,7 +2,7 @@
 #include <QRandomGenerator>
 #include <QtMath>
 ECGGenerator::ECGGenerator()
-    : IDataGenerator(MessageType::ECG, "ECG", "mV"), m_phase(0.0),
+    : IDataGenerator(MessageType::ECG, "ECG", "mV", -2, 2), m_phase(0.0),
       m_samplingRate(500), m_frequency(1.0), m_currentValue(0) {}
 
 const qreal &ECGGenerator::generateData() {

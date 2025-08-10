@@ -14,13 +14,12 @@ int main(int argc, char *argv[]) {
                          10); // PPG waveform
   scheduler.addGenerator(dataFactory.create(MessageType::RespiratoryWaveForm),
                          40); // Resp waveform
-  scheduler.addGenerator(dataFactory.create(MessageType::HeartRate), 1000);
-  scheduler.addGenerator(dataFactory.create(MessageType::RespiratoryRate),
-                         5000);
-  scheduler.addGenerator(dataFactory.create(MessageType::Spo2), 1000);
-  scheduler.addGenerator(dataFactory.create(MessageType::NIBPSystole), 60000);
-  scheduler.addGenerator(dataFactory.create(MessageType::NIBPDiastole), 60000);
-  scheduler.addGenerator(dataFactory.create(MessageType::BodyTemp), 30000);
+  scheduler.addGenerator(dataFactory.create(MessageType::HeartRate), 500);
+  scheduler.addGenerator(dataFactory.create(MessageType::RespiratoryRate), 500);
+  scheduler.addGenerator(dataFactory.create(MessageType::Spo2), 500);
+  scheduler.addGenerator(dataFactory.create(MessageType::NIBPSystole), 2000);
+  scheduler.addGenerator(dataFactory.create(MessageType::NIBPDiastole), 2000);
+  scheduler.addGenerator(dataFactory.create(MessageType::BodyTemp), 3000);
   scheduler.addGenerator(dataFactory.create(MessageType::EtCo2), 2000);
 
   TcpServerCommunicator tcpServer;

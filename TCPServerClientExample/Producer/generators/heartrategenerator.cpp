@@ -1,9 +1,8 @@
 #include "heartrategenerator.h"
 #include <QRandomGenerator>
 HeartRateGenerator::HeartRateGenerator()
-    : IDataGenerator(MessageType::HeartRate, "Heart Rate", "BPM"),
-      m_currentValue(75.0), // typical resting value
-      m_minRate(60.0), m_maxRate(100.0) {}
+    : IDataGenerator(MessageType::HeartRate, "Heart Rate", "BPM", 40, 180),
+      m_currentValue(75.0) {}
 
 const qreal &HeartRateGenerator::generateData() {
   // Add small variation (±1.0 BPM per sample)
@@ -12,10 +11,10 @@ const qreal &HeartRateGenerator::generateData() {
   m_currentValue += noise;
 
   // Clamp to range
-  if (m_currentValue < m_minRate)
-    m_currentValue = m_minRate;
-  if (m_currentValue > m_maxRate)
-    m_currentValue = m_maxRate;
+  if (m_currentValue < minValue)
+    m_currentValue = minValue;
+  if (m_currentValue > maxValue)
+    m_currentValue = maxValue;
 
   return m_currentValue;
 }

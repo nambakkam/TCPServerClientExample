@@ -1,7 +1,7 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
-
+import CommonMessages 1.0
 Rectangle {
     id: mainScreen
     width: 1024
@@ -78,6 +78,14 @@ Rectangle {
         anchors.topMargin: parent.height*0.01
         anchors.left: dialContainer.left
         anchors.leftMargin: 5
+        paramName: "NIBP"
+        sysValue: 120
+        diaValue: 80
+        sysMin: 40
+        sysMax: 180
+        diaMin: 40
+        diaMax: 120
+        units: "mmHg"
     }
     TemperatureGauge{
         id:tempGauge

@@ -1,9 +1,8 @@
 #include "spo2generator.h"
 
 Spo2Generator::Spo2Generator()
-    : IDataGenerator(MessageType::Spo2, "SpO2", "%"),
-      m_currentValue(98.0), // typical resting saturation
-      m_minValue(95.0), m_maxValue(100.0) {}
+    : IDataGenerator(MessageType::Spo2, "SpO2", "%", 80, 100),
+      m_currentValue(98.0) {}
 
 const qreal &Spo2Generator::generateData() {
   // Small random variation ±0.2%
@@ -11,10 +10,10 @@ const qreal &Spo2Generator::generateData() {
   m_currentValue += noise;
 
   // Clamp to normal range
-  if (m_currentValue < m_minValue)
-    m_currentValue = m_minValue;
-  if (m_currentValue > m_maxValue)
-    m_currentValue = m_maxValue;
+  if (m_currentValue < minValue)
+    m_currentValue = minValue;
+  if (m_currentValue > maxValue)
+    m_currentValue = maxValue;
 
   return m_currentValue;
 }

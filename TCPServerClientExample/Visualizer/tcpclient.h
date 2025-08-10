@@ -21,6 +21,8 @@ private slots:
 private:
   QTcpSocket *socket;
   QByteArray buffer;
+signals:
+  void dataReceived(QJsonObject obj);
 };
 
 #endif // TCPCLIENT_H

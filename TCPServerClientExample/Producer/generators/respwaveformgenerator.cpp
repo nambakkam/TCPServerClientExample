@@ -3,7 +3,7 @@
 #include <QtMath>
 RespWaveFormGenerator::RespWaveFormGenerator()
     : IDataGenerator(MessageType::RespiratoryWaveForm, "Respiratory WaveForm",
-                     "L/sec"),
+                     "L/sec", -2, 2),
       m_phase(0.0), m_frequency(0.25), // 15 breaths/min
       m_samplingRate(50),              // 50 samples/sec
       m_currentValue(0.0) {}
