@@ -1,5 +1,6 @@
 #include "tcpclient.h"
 #include "commonMessages.h"
+#include "encryption.h"
 #include <QDebug>
 #include <QJsonDocument>
 TcpClient::TcpClient(QObject *parent)
@@ -29,7 +30,8 @@ void TcpClient::onError(QAbstractSocket::SocketError socketError) {
 
 void TcpClient::onReadyRead() {
   buffer.append(socket->readAll());
-
+  buffer =
+      CommonEncryptor::decryptWithPassword(buffer, CommonMessages::SECRET_KEY);
   QJsonObject jsonObj;
   while (CommonMessages::deframeMessage(buffer, jsonObj)) {
     if (!CommonMessages::validateMessage(jsonObj)) {

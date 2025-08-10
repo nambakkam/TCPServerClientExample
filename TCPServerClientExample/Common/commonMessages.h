@@ -26,6 +26,7 @@ enum class MessageType {
 };
 Q_ENUM_NS(MessageType)
 inline constexpr int CURRENT_VERSION = 1;
+inline constexpr char SECRET_KEY[] = "Blue$Tundra7!Falcon^Rise";
 namespace CommonKeys {
 inline constexpr char PARAMETER_TYPE[] = "parameterType";
 inline constexpr char PARAM_NAME[] = "paramName";

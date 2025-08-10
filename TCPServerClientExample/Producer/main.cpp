@@ -1,5 +1,6 @@
 #include "commonMessages.h"
 #include "communication/tcpservercommunicator.h"
+#include "encryption.h"
 #include "generators/datageneratorfactory.h"
 #include "scheduler/datascheduler.h"
 #include <QCoreApplication>
@@ -27,9 +28,12 @@ int main(int argc, char *argv[]) {
   QObject::connect(&scheduler, &DataScheduler::dataGenerated, &tcpServer,
                    [&tcpServer](const QJsonObject &value) {
                      QByteArray message = frameMessage(value);
-                     //                     qDebug() << "Message Published" <<
-                     //                     message;
-                     tcpServer.sendData(message);
+                     QByteArray encryptedMessage =
+                         CommonEncryptor::encryptWithPassword(
+                             message, CommonMessages::SECRET_KEY);
+                     //                     qDebug() << "Message Published"
+                     //                     << message;
+                     tcpServer.sendData(encryptedMessage);
                    });
 
   return a.exec();
