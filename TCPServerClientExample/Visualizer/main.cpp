@@ -1,27 +1,32 @@
 #include "commonMessages.h"
+#include "datahandler.h"
 #include "dialindicator.h"
-#include "parametermodel.h"
 #include "tcpclient.h"
 #include <QGuiApplication>
 #include <QHostAddress>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
+#include <QThread>
 int main(int argc, char *argv[]) {
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
   QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 #endif
   QGuiApplication app(argc, argv);
+  QThread tcpThread;
   TcpClient client;
-  client.connectToHost(QHostAddress::LocalHost, 12345);
+  client.moveToThread(&tcpThread);
+  tcpThread.start();
+  QObject::connect(&tcpThread, &QThread::started, &client,
+                   &TcpClient::onThreadStarted);
   qmlRegisterType<DialIndicator>("CustomControls", 1, 0, "DialIndicator");
   qmlRegisterUncreatableMetaObject(CommonMessages::staticMetaObject,
                                    "CommonMessages", 1, 0, "CommonMessages",
                                    "Access enums only");
-  ParameterModel model;
-  QObject::connect(&client, &TcpClient::dataReceived, &model,
-                   &ParameterModel::updateFromJson);
+  DataHandler dataHandler;
+  QObject::connect(&client, &TcpClient::dataReceived, &dataHandler,
+                   &DataHandler::onJsonDataReceived, Qt::AutoConnection);
   QQmlApplicationEngine engine;
-  engine.rootContext()->setContextProperty("parameterModel", &model);
+  engine.rootContext()->setContextProperty("dataHandler", &dataHandler);
   const QUrl url(QStringLiteral("qrc:/main.qml"));
   QObject::connect(
       &engine, &QQmlApplicationEngine::objectCreated, &app,

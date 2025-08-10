@@ -79,13 +79,13 @@ Rectangle {
         anchors.left: dialContainer.left
         anchors.leftMargin: 5
         paramName: "NIBP"
-        sysValue: 120
-        diaValue: 80
-        sysMin: 40
-        sysMax: 180
-        diaMin: 40
-        diaMax: 120
-        units: "mmHg"
+        sysValue: dataHandler.nibp.sysValue
+        diaValue: dataHandler.nibp.diaValue
+        sysMin: dataHandler.nibp.sysMin
+        sysMax: dataHandler.nibp.sysMax
+        diaMin: dataHandler.nibp.diaMin
+        diaMax: dataHandler.nibp.diaMax
+        units: dataHandler.nibp.units
     }
     TemperatureGauge{
         id:tempGauge
@@ -95,6 +95,11 @@ Rectangle {
         anchors.topMargin: parent.height*0.01
         anchors.left: dialContainer.left
         anchors.leftMargin: 5
+        label: dataHandler.temperature.paramName
+        tempValue: dataHandler.temperature.value
+        tempMin: dataHandler.temperature.minValue
+        tempMax: dataHandler.temperature.maxValue
+        units: dataHandler.temperature.units
     }
     EtCo2Display{
         id:etco2Gauge

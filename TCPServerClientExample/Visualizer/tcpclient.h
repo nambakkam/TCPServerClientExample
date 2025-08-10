@@ -12,6 +12,8 @@ public:
   explicit TcpClient(QObject *parent = nullptr);
   void connectToHost(const QHostAddress &host, quint16 port);
 
+public slots:
+  void onThreadStarted();
 private slots:
   void onConnected();
   void onDisconnected();

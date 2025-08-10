@@ -10,10 +10,11 @@ Rectangle {
     color: "#1a1f2b"
     border.color: "#2a2f3b"
     border.width: 1
-
+    property string label: "Temperature"
     property real tempValue: 37.5
     property real tempMin: 30
     property real tempMax: 45
+    property string units: " °C"
 
     ColumnLayout {
         anchors.fill: parent
@@ -21,19 +22,13 @@ Rectangle {
         spacing: 6
 
         Label {
-            text: "Temperature"
+            text: label
             color: "#aaaaaa"
             font.pixelSize: 12
         }
 
         RowLayout {
             spacing: 6
-            Label {
-                text: "TEMP"
-                color: "#cccccc"
-                font.pixelSize: 12
-                Layout.preferredWidth: 45
-            }
             HorizontalGauge {
                 Layout.fillWidth: true
                 minValue: tempMin
@@ -42,7 +37,7 @@ Rectangle {
                 fillColor: "#3498db"
             }
             Label {
-                text: Number(tempValue).toFixed(1) +  " °C"
+                text: Number(tempValue).toFixed(1) +  " " + units
                 color: "#ffffff"
                 font.pixelSize: 12
             }

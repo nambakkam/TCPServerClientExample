@@ -3,8 +3,10 @@
 #include "encryption.h"
 #include <QDebug>
 #include <QJsonDocument>
-TcpClient::TcpClient(QObject *parent)
-    : QObject(parent), socket(new QTcpSocket(this)) {
+TcpClient::TcpClient(QObject *parent) : QObject(parent), socket(nullptr) {}
+
+void TcpClient::onThreadStarted() {
+  socket = new QTcpSocket(this);
   connect(socket, &QTcpSocket::connected, this, &TcpClient::onConnected);
   connect(socket, &QTcpSocket::readyRead, this, &TcpClient::onReadyRead);
   connect(socket, &QTcpSocket::disconnected, this, &TcpClient::onDisconnected);
@@ -12,6 +14,7 @@ TcpClient::TcpClient(QObject *parent)
           QOverload<QAbstractSocket::SocketError>::of(
               &QAbstractSocket::errorOccurred),
           this, &TcpClient::onError);
+  connectToHost(QHostAddress::LocalHost, 12345);
 }
 
 void TcpClient::connectToHost(const QHostAddress &host, quint16 port) {

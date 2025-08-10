@@ -11,7 +11,7 @@ Item {
         spacing: 5
 
         Repeater {
-            model: parameterModel
+            model: dataHandler.model
             delegate: DialIndicator {
                 width: parent.width * 0.25
                 height: parent.height * 0.75

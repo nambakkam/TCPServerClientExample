@@ -28,12 +28,6 @@ Rectangle {
 
         RowLayout {
             spacing: 6
-            Label {
-                text: "EtCO₂"
-                color: "#cccccc"
-                font.pixelSize: 12
-                Layout.preferredWidth: 45
-            }
             HorizontalGauge {
                 Layout.fillWidth: true
                 minValue: etco2Min

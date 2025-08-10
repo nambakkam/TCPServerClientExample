@@ -6,10 +6,14 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+        datahandler.cpp \
         dialindicator.cpp \
+        etco2data.cpp \
         main.cpp \
+        nibpdata.cpp \
         parametermodel.cpp \
-        tcpclient.cpp
+        tcpclient.cpp \
+        temperaturedata.cpp
 
 RESOURCES += qml.qrc
 
@@ -27,6 +31,10 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 include("$$PWD/../Common/common.pri")
 
 HEADERS += \
+    datahandler.h \
     dialindicator.h \
+    etco2data.h \
+    nibpdata.h \
     parametermodel.h \
-    tcpclient.h
+    tcpclient.h \
+    temperaturedata.h
