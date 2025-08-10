@@ -120,5 +120,11 @@ Rectangle {
             bottomMargin: height*0.05
             bottom: parent.bottom
         }
+        onConnectClicked: {
+            tcpClient.requestConnect(ip,port)
+        }
+        onDisconnectClicked: {
+            tcpClient.requestDisconnect()
+        }
     }
 }

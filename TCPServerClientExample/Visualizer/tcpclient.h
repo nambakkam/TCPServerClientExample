@@ -10,10 +10,14 @@ class TcpClient : public QObject {
   Q_OBJECT
 public:
   explicit TcpClient(QObject *parent = nullptr);
-  void connectToHost(const QHostAddress &host, quint16 port);
 
 public slots:
   void onThreadStarted();
+  void disconnectFromHost();
+  void connectToHost(const QString &host, quint16 port);
+  Q_INVOKABLE void requestConnect(const QString &host, quint16 port);
+
+  Q_INVOKABLE void requestDisconnect();
 private slots:
   void onConnected();
   void onDisconnected();
@@ -25,6 +29,8 @@ private:
   QByteArray buffer;
 signals:
   void dataReceived(QJsonObject obj);
+  void connectRequested(const QString &host, quint16 port);
+  void disconnectRequested();
 };
 
 #endif // TCPCLIENT_H

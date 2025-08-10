@@ -27,6 +27,7 @@ int main(int argc, char *argv[]) {
                    &DataHandler::onJsonDataReceived, Qt::AutoConnection);
   QQmlApplicationEngine engine;
   engine.rootContext()->setContextProperty("dataHandler", &dataHandler);
+  engine.rootContext()->setContextProperty("tcpClient", &client);
   const QUrl url(QStringLiteral("qrc:/main.qml"));
   QObject::connect(
       &engine, &QQmlApplicationEngine::objectCreated, &app,

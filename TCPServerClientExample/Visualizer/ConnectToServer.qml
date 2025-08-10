@@ -54,8 +54,8 @@ Rectangle {
                 Layout.preferredWidth: 30
             }
             TextField {
+                id:ipField
                 Layout.fillWidth: true
-                text: root.ipAddress
                 color: "#ffffff"
                 placeholderText: "Enter IP"
                 background: Rectangle {
@@ -75,8 +75,8 @@ Rectangle {
                 Layout.preferredWidth: 30
             }
             TextField {
+                id:portField
                 Layout.fillWidth: true
-                text: root.portNumber.toString()
                 inputMethodHints: Qt.ImhDigitsOnly
                 color: "#ffffff"
                 placeholderText: "Enter Port"
@@ -100,7 +100,7 @@ Rectangle {
                 }
                 onClicked: {
                     root.isConnected = true
-                    root.connectClicked(root.ipAddress, root.portNumber)
+                    root.connectClicked(ipField.text, portField.text)
                 }
             }
 

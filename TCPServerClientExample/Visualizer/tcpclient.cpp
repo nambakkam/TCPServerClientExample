@@ -14,13 +14,24 @@ void TcpClient::onThreadStarted() {
           QOverload<QAbstractSocket::SocketError>::of(
               &QAbstractSocket::errorOccurred),
           this, &TcpClient::onError);
-  connectToHost(QHostAddress::LocalHost, 12345);
+  connect(this, &TcpClient::connectRequested, this, &TcpClient::connectToHost,
+          Qt::QueuedConnection);
+  connect(this, &TcpClient::disconnectRequested, this,
+          &TcpClient::disconnectFromHost, Qt::QueuedConnection);
+
+  //  connectToHost(QHostAddress::LocalHost, 12345);
 }
 
-void TcpClient::connectToHost(const QHostAddress &host, quint16 port) {
-  qDebug() << "Connecting to" << host.toString() << port;
+void TcpClient::connectToHost(const QString &host, quint16 port) {
+  qDebug() << "Connecting to" << host << port;
   socket->connectToHost(host, port);
 }
+
+void TcpClient::requestConnect(const QString &host, quint16 port) {
+  emit connectRequested(host, port);
+}
+
+void TcpClient::requestDisconnect() { emit disconnectRequested(); }
 
 void TcpClient::onConnected() { qDebug() << "Connected to server"; }
 
@@ -58,3 +69,5 @@ void TcpClient::onReadyRead() {
     emit dataReceived(jsonObj);
   }
 }
+
+void TcpClient::disconnectFromHost() { socket->disconnectFromHost(); }
