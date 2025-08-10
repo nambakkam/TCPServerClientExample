@@ -2,6 +2,7 @@
 #include "datahandler.h"
 #include "dialindicator.h"
 #include "tcpclient.h"
+#include "waveformgraph.h"
 #include <QGuiApplication>
 #include <QHostAddress>
 #include <QQmlApplicationEngine>
@@ -19,6 +20,8 @@ int main(int argc, char *argv[]) {
   QObject::connect(&tcpThread, &QThread::started, &client,
                    &TcpClient::onThreadStarted);
   qmlRegisterType<DialIndicator>("CustomControls", 1, 0, "DialIndicator");
+  qmlRegisterType<WaveformGraph>("CustomGraphs", 1, 0, "WaveformGraph");
+
   qmlRegisterUncreatableMetaObject(CommonMessages::staticMetaObject,
                                    "CommonMessages", 1, 0, "CommonMessages",
                                    "Access enums only");

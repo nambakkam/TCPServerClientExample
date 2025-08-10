@@ -1,9 +1,9 @@
-#ifndef ETCO2DATA_H
-#define ETCO2DATA_H
+#ifndef PPGDATA_H
+#define PPGDATA_H
 
 #include <QObject>
 
-class EtCO2Data : public QObject {
+class PPGData : public QObject {
   Q_OBJECT
 
   Q_PROPERTY(QString paramName READ paramName WRITE setParamName NOTIFY
@@ -14,10 +14,9 @@ class EtCO2Data : public QObject {
   Q_PROPERTY(
       double maxValue READ maxValue WRITE setMaxValue NOTIFY maxValueChanged)
   Q_PROPERTY(QString units READ units WRITE setUnits NOTIFY unitsChanged)
-  Q_PROPERTY(int frequency READ frequency WRITE setFrequency NOTIFY frequencyChanged)
 
 public:
-  explicit EtCO2Data(QObject *parent = nullptr);
+  explicit PPGData(QObject *parent = nullptr);
 
   QString paramName() const;
   void setParamName(const QString &val);
@@ -35,7 +34,7 @@ public:
   void setUnits(const QString &val);
 
   int frequency() const;
-  void setFrequency(const int& val);
+  void setFrequency(int val);
 
 signals:
   void paramNameChanged();
@@ -50,8 +49,8 @@ private:
   double m_value;
   double m_minValue;
   double m_maxValue;
-  int m_frequency;
   QString m_units;
+  int m_frequency; // Added frequency property
 };
 
-#endif // ETCO2DATA_H
+#endif // PPGDATA_H

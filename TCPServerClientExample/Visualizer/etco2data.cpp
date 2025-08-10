@@ -3,7 +3,7 @@
 
 EtCO2Data::EtCO2Data(QObject *parent)
     : QObject(parent), m_paramName("EtCO2"), m_value(35.0), m_minValue(10.0),
-      m_maxValue(50.0), m_units("mmHg") {}
+      m_maxValue(50.0), m_units("mmHg"), m_frequency(1) {}
 
 QString EtCO2Data::paramName() const { return m_paramName; }
 
@@ -48,4 +48,17 @@ void EtCO2Data::setUnits(const QString &val) {
     m_units = val;
     emit unitsChanged();
   }
+}
+
+int EtCO2Data::frequency() const
+{
+    return m_frequency;
+}
+
+void EtCO2Data::setFrequency(const int &val)
+{
+    if (val != m_frequency) {
+        m_frequency = val;
+        emit frequencyChanged();
+    }
 }

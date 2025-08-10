@@ -4,7 +4,7 @@
 NIBPData::NIBPData(QObject *parent)
     : QObject(parent), m_paramName("NIBP"), m_sysValue(118.9), m_diaValue(80.8),
       m_sysMin(40), m_sysMax(180), m_diaMin(40), m_diaMax(120),
-      m_units("mmHg") {}
+      m_units("mmHg"), m_frequency(1) {}
 
 QString NIBPData::paramName() const { return m_paramName; }
 
@@ -76,4 +76,17 @@ void NIBPData::setUnits(const QString &val) {
     m_units = val;
     emit unitsChanged();
   }
+}
+
+int NIBPData::frequency() const
+{
+    return m_frequency;
+}
+
+void NIBPData::setFrequency(const int &val)
+{
+    if (val != m_frequency) {
+        m_frequency = val;
+        emit frequencyChanged();
+    }
 }

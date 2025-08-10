@@ -11,6 +11,7 @@ class TemperatureData : public QObject {
     Q_PROPERTY(double minValue READ minValue WRITE setMinValue NOTIFY minValueChanged)
     Q_PROPERTY(double maxValue READ maxValue WRITE setMaxValue NOTIFY maxValueChanged)
     Q_PROPERTY(QString units READ units WRITE setUnits NOTIFY unitsChanged)
+    Q_PROPERTY(int frequency READ frequency WRITE setFrequency NOTIFY frequencyChanged)
 
 public:
     explicit TemperatureData(QObject *parent = nullptr);
@@ -30,12 +31,16 @@ public:
     QString units() const;
     void setUnits(const QString &val);
 
+    int frequency() const;
+    void setFrequency(int val);
+
 signals:
     void paramNameChanged();
     void valueChanged();
     void minValueChanged();
     void maxValueChanged();
     void unitsChanged();
+    void frequencyChanged();
 
 private:
     QString m_paramName;
@@ -43,6 +48,7 @@ private:
     double m_minValue;
     double m_maxValue;
     QString m_units;
+    int m_frequency;
 };
 
 #endif // TEMPERATUREDATA_H

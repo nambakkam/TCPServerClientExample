@@ -17,6 +17,8 @@ class NIBPData : public QObject {
   Q_PROPERTY(double diaMin READ diaMin WRITE setDiaMin NOTIFY diaMinChanged)
   Q_PROPERTY(double diaMax READ diaMax WRITE setDiaMax NOTIFY diaMaxChanged)
   Q_PROPERTY(QString units READ units WRITE setUnits NOTIFY unitsChanged)
+  Q_PROPERTY(
+      int frequency READ frequency WRITE setFrequency NOTIFY frequencyChanged)
 
 public:
   explicit NIBPData(QObject *parent = nullptr);
@@ -45,6 +47,9 @@ public:
   QString units() const;
   void setUnits(const QString &val);
 
+  int frequency() const;
+  void setFrequency(const int &val);
+
 signals:
   void paramNameChanged();
   void sysValueChanged();
@@ -54,6 +59,7 @@ signals:
   void diaMinChanged();
   void diaMaxChanged();
   void unitsChanged();
+  void frequencyChanged();
 
 private:
   QString m_paramName;
@@ -64,6 +70,7 @@ private:
   double m_diaMin;
   double m_diaMax;
   QString m_units;
+  int m_frequency; // Added frequency property
 };
 
 #endif // NIBPDATA_H

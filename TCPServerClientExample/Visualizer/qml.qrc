@@ -9,5 +9,6 @@
         <file>TemperatureGauge.qml</file>
         <file>EtCo2Display.qml</file>
         <file>ConnectToServer.qml</file>
+        <file>RealTimeGraphs.qml</file>
     </qresource>
 </RCC>

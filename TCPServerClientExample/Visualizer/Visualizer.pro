@@ -1,4 +1,4 @@
-QT += quick
+QT += quick concurrent
 QT += network
 CONFIG += c++17
 # You can make your code fail to compile if it uses deprecated APIs.
@@ -8,12 +8,16 @@ CONFIG += c++17
 SOURCES += \
         datahandler.cpp \
         dialindicator.cpp \
+        ecgdata.cpp \
         etco2data.cpp \
         main.cpp \
         nibpdata.cpp \
         parametermodel.cpp \
+        ppgdata.cpp \
+        respwaveformdata.cpp \
         tcpclient.cpp \
-        temperaturedata.cpp
+        temperaturedata.cpp \
+        waveformgraph.cpp
 
 RESOURCES += qml.qrc
 
@@ -33,8 +37,12 @@ include("$$PWD/../Common/common.pri")
 HEADERS += \
     datahandler.h \
     dialindicator.h \
+    ecgdata.h \
     etco2data.h \
     nibpdata.h \
     parametermodel.h \
+    ppgdata.h \
+    respwaveformdata.h \
     tcpclient.h \
-    temperaturedata.h
+    temperaturedata.h \
+    waveformgraph.h

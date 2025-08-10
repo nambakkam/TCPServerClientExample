@@ -27,6 +27,7 @@ enum class MessageType {
 Q_ENUM_NS(MessageType)
 inline constexpr int CURRENT_VERSION = 1;
 inline constexpr char SECRET_KEY[] = "Blue$Tundra7!Falcon^Rise";
+
 namespace CommonKeys {
 inline constexpr char PARAMETER_TYPE[] = "parameterType";
 inline constexpr char PARAM_NAME[] = "paramName";
@@ -36,6 +37,18 @@ inline constexpr char MINVAL[] = "minValue";
 inline constexpr char MAXVAL[] = "maxValue";
 inline constexpr char VERSION[] = "version";
 } // namespace CommonKeys
+
+namespace ScheduledIntervals {
+inline constexpr int ecgTime = 40;
+inline constexpr int ppgTime = 10;
+inline constexpr int respWaveFormTime = 20;
+inline constexpr int rrTime = 60;
+inline constexpr int hrTime = 60;
+inline constexpr int spo2Time = 60;
+inline constexpr int NIBPTime = 200;
+inline constexpr int tempTime = 200;
+inline constexpr int etco2Time = 300;
+} // namespace ScheduledIntervals
 // Enum to string conversion
 inline QString parameterTypeToString(MessageType type) {
   return QString(

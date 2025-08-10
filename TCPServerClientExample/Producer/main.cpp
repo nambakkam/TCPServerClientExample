@@ -9,18 +9,25 @@ int main(int argc, char *argv[]) {
   DataScheduler scheduler;
   DataGeneratorFactory dataFactory;
   scheduler.addGenerator(dataFactory.create(MessageType::ECG),
-                         40); // ECG waveform
+                         ScheduledIntervals::ecgTime); // ECG waveform
   scheduler.addGenerator(dataFactory.create(MessageType::PPG),
-                         10); // PPG waveform
+                         ScheduledIntervals::ppgTime); // PPG waveform
   scheduler.addGenerator(dataFactory.create(MessageType::RespiratoryWaveForm),
-                         40); // Resp waveform
-  scheduler.addGenerator(dataFactory.create(MessageType::HeartRate), 500);
-  scheduler.addGenerator(dataFactory.create(MessageType::RespiratoryRate), 500);
-  scheduler.addGenerator(dataFactory.create(MessageType::Spo2), 500);
-  scheduler.addGenerator(dataFactory.create(MessageType::NIBPSystole), 2000);
-  scheduler.addGenerator(dataFactory.create(MessageType::NIBPDiastole), 2000);
-  scheduler.addGenerator(dataFactory.create(MessageType::BodyTemp), 3000);
-  scheduler.addGenerator(dataFactory.create(MessageType::EtCo2), 2000);
+                         ScheduledIntervals::respWaveFormTime); // Resp waveform
+  scheduler.addGenerator(dataFactory.create(MessageType::HeartRate),
+                         ScheduledIntervals::hrTime);
+  scheduler.addGenerator(dataFactory.create(MessageType::RespiratoryRate),
+                         ScheduledIntervals::rrTime);
+  scheduler.addGenerator(dataFactory.create(MessageType::Spo2),
+                         ScheduledIntervals::spo2Time);
+  scheduler.addGenerator(dataFactory.create(MessageType::NIBPSystole),
+                         ScheduledIntervals::NIBPTime);
+  scheduler.addGenerator(dataFactory.create(MessageType::NIBPDiastole),
+                         ScheduledIntervals::NIBPTime);
+  scheduler.addGenerator(dataFactory.create(MessageType::BodyTemp),
+                         ScheduledIntervals::tempTime);
+  scheduler.addGenerator(dataFactory.create(MessageType::EtCo2),
+                         ScheduledIntervals::etco2Time);
 
   TcpServerCommunicator tcpServer;
   tcpServer.startServer(12345);
@@ -30,8 +37,7 @@ int main(int argc, char *argv[]) {
                      QByteArray encryptedMessage =
                          CommonEncryptor::encryptWithPassword(
                              message, CommonMessages::SECRET_KEY);
-                     //                     qDebug() << "Message Published"
-                     //                     << message;
+                     qDebug() << "Message Published" << message;
                      tcpServer.sendData(encryptedMessage);
                    });
 

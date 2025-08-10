@@ -3,7 +3,7 @@
 
 TemperatureData::TemperatureData(QObject *parent)
     : QObject(parent), m_paramName("Temperature"), m_value(36.5),
-      m_minValue(30.0), m_maxValue(45.0), m_units("°C") {}
+      m_minValue(30.0), m_maxValue(45.0), m_units("°C"), m_frequency(1) {}
 
 QString TemperatureData::paramName() const { return m_paramName; }
 
@@ -48,4 +48,17 @@ void TemperatureData::setUnits(const QString &val) {
     m_units = val;
     emit unitsChanged();
   }
+}
+
+int TemperatureData::frequency() const
+{
+    return m_frequency;
+}
+
+void TemperatureData::setFrequency(int val)
+{
+    if (val != m_frequency) {
+        m_frequency = val;
+        emit frequencyChanged();
+    }
 }

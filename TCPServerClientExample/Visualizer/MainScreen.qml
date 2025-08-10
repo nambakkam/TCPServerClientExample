@@ -127,4 +127,14 @@ Rectangle {
             tcpClient.requestDisconnect()
         }
     }
+    RealTimeGraphs{
+        id:graphs
+        width: parent.width*0.425
+        height: parent.height
+        anchors{
+            left: parent.left
+            leftMargin: parent.width*0.02
+            verticalCenter: parent.verticalCenter
+        }
+    }
 }

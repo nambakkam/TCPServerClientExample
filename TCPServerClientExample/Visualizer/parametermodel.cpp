@@ -77,18 +77,14 @@ void ParameterModel::updateFromJson(const QJsonObject &obj) {
       "units": "mmHg"
    }
   */
-  qDebug() << "JSON Received: " << obj;
-
   if (!obj.contains(CommonKeys::PARAMETER_TYPE))
     return;
 
   QString typeStr = obj.value(CommonKeys::PARAMETER_TYPE).toString();
-  qDebug() << "Param Type is " << typeStr;
   CommonMessages::MessageType type{MessageType::ECG};
   if (!stringToParameterType(typeStr, type)) {
     qDebug() << "Invalid type" << typeStr;
   }
-  qDebug() << "MessageType is " << parameterTypeToString(type);
 
   int idx = findIndexByType(type);
   if (idx < 0)
@@ -126,7 +122,6 @@ void ParameterModel::updateFromJson(const QJsonObject &obj) {
     m_parameters[idx].maxValue = maxValue;
     changed = true;
   }
-  qDebug() << "Value changed";
   if (changed) {
     QModelIndex modelIndex = index(idx);
     emit dataChanged(
