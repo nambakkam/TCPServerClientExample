@@ -109,6 +109,11 @@ Rectangle {
         anchors.topMargin: parent.height*0.01
         anchors.left: dialContainer.left
         anchors.leftMargin: 5
+        label : dataHandler.etco2.paramName
+        etco2Value: dataHandler.etco2.value
+        etco2Min: dataHandler.etco2.minValue
+        etco2Max: dataHandler.etco2.maxValue
+        units: dataHandler.etco2.units
     }
     ConnectToServer{
         id:connectionToTCP

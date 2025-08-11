@@ -10,10 +10,11 @@ Rectangle {
     color: "#1a1f2b"
     border.color: "#2a2f3b"
     border.width: 1
-
+    property string label : "EtCO₂"
     property real etco2Value: 32.4
     property real etco2Min: 0
     property real etco2Max: 50
+    property string units: "mmHg"
 
     ColumnLayout {
         anchors.fill: parent
@@ -21,7 +22,7 @@ Rectangle {
         spacing: 6
 
         Label {
-            text: "EtCO₂"
+            text: label
             color: "#aaaaaa"
             font.pixelSize: 12
         }
@@ -36,7 +37,7 @@ Rectangle {
                 fillColor: "#e67e22"
             }
             Label {
-                text: Number(etco2Value).toFixed(1) + " mmHg"
+                text: Number(etco2Value).toFixed(1) +" "+ units
                 color: "#ffffff"
                 font.pixelSize: 12
             }

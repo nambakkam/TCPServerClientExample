@@ -2,10 +2,12 @@ INCLUDEPATH += $$PWD
 
 HEADERS += \
     $$PWD/commonMessages.h \
-    $$PWD/encryption.h
+    $$PWD/encryption.h \
+    $$PWD/minimalcipher.h
 
 SOURCES += \
-    $$PWD/encyrption.cpp
+    $$PWD/encyrption.cpp \
+    $$PWD/minimalcipher.cpp
 
 #LIBS += -lcrypto
 #LIBS += -lssl

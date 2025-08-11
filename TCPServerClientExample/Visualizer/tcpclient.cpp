@@ -1,6 +1,7 @@
 #include "tcpclient.h"
 #include "commonMessages.h"
 #include "encryption.h"
+#include "minimalcipher.h"
 #include <QDebug>
 #include <QJsonDocument>
 TcpClient::TcpClient(QObject *parent) : QObject(parent), socket(nullptr) {}
@@ -44,8 +45,11 @@ void TcpClient::onError(QAbstractSocket::SocketError socketError) {
 
 void TcpClient::onReadyRead() {
   buffer.append(socket->readAll());
-  buffer =
-      CommonEncryptor::decryptWithPassword(buffer, CommonMessages::SECRET_KEY);
+  //  if (!MinimalCipher::initialize(CommonMessages::SECRET_KEY)) {
+  //    qDebug() << "Failed to initialize encryption!";
+  //    return;
+  //  }
+  //  buffer = MinimalCipher::decrypt(buffer);
   QJsonObject jsonObj;
   while (CommonMessages::deframeMessage(buffer, jsonObj)) {
     if (!CommonMessages::validateMessage(jsonObj)) {
@@ -67,6 +71,7 @@ void TcpClient::onReadyRead() {
     QString units = jsonObj[CommonMessages::CommonKeys::UNITS].toString();
 
     emit dataReceived(jsonObj);
+    //    MinimalCipher::cleanup();
   }
 }
 

@@ -17,7 +17,7 @@ Rectangle {
             paramName: dataHandler.ecg.paramName
             units: dataHandler.ecg.units
 //            dataFrequencyMs: dataHandler.ecg.frequency
-            timeWindowSec: 10
+            timeWindowSec: 60
             lineColor: "green"
         }
 
@@ -39,7 +39,7 @@ Rectangle {
             paramName: dataHandler.respWaveForm.paramName
             units: dataHandler.respWaveForm.units
 //            dataFrequencyMs: dataHandler.respWaveForm.frequency
-            timeWindowSec: 10
+            timeWindowSec: 60
             lineColor: "blue"
         }
     }
